@@ -1,0 +1,127 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-04-23T16:00:00+07:00",
+  "data": {
+    "couple": {
+      "groom": {
+        "name": "Aryhermansyah",
+        "fullName": "Aryhermansyah, S.Kom",
+        "nickname": "Ary",
+        "photo": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/...",
+        "fatherName": "Bapak Ary",
+        "motherName": "Ibu Ary",
+        "bio": "Seorang programmer yang mencintai kopi dan coding"
+      },
+      "bride": {
+        "name": "Ananta",
+        "fullName": "Ananta Putri, S.E.",
+        "nickname": "Anta",
+        "photo": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/...",
+        "fatherName": "Bapak Ananta",
+        "motherName": "Ibu Ananta",
+        "bio": "Seorang desainer grafis yang kreatif dan penuh inspirasi"
+      },
+      "date": "2025-10-10T08:00:00.000Z",
+      "coverPhoto": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/..."
+    },
+    "venue": {
+      "name": "Gedung Pernikahan Bahagia",
+      "address": "Jl. Cinta Abadi No. 123, Jakarta Selatan",
+      "mapUrl": "https://maps.google.com/?q=-6.2088,106.8456",
+      "photo": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/..."
+    },
+    "theme": {
+      "name": "Rustic Elegant",
+      "primaryColor": "#8D7B68",
+      "secondaryColor": "#C8B6A6",
+      "accentColor": "#F1DEC9",
+      "fontPrimary": "Playfair Display",
+      "fontSecondary": "Montserrat"
+    },
+    "schedule": [
+      {
+        "id": "1",
+        "title": "Akad Nikah",
+        "date": "2025-10-10T08:00:00.000Z",
+        "location": "Gedung Pernikahan Bahagia - Lantai 1",
+        "description": "Prosesi sakral pernikahan secara agama"
+      },
+      {
+        "id": "2",
+        "title": "Resepsi",
+        "date": "2025-10-10T10:00:00.000Z",
+        "location": "Gedung Pernikahan Bahagia - Ballroom",
+        "description": "Jamuan makan dan perayaan bersama keluarga dan teman"
+      }
+    ],
+    "committee": [
+      {
+        "id": "1",
+        "name": "Budi Santoso",
+        "role": "Ketua Panitia",
+        "photo": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/..."
+      },
+      {
+        "id": "2",
+        "name": "Dewi Anggraini",
+        "role": "Koordinator Acara",
+        "photo": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/..."
+      }
+    ],
+    "vendors": [
+      {
+        "id": "1",
+        "name": "Harmony Wedding Organizer",
+        "category": "Wedding Organizer",
+        "contact": "0812-3456-7890",
+        "website": "https://harmonywedding.com",
+        "logo": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/..."
+      },
+      {
+        "id": "2",
+        "name": "Delicious Catering",
+        "category": "Catering",
+        "contact": "0812-9876-5432",
+        "website": "https://deliciouscatering.com",
+        "logo": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/..."
+      }
+    ],
+    "coordinators": [
+      {
+        "id": "1",
+        "name": "Ahmad Faisal",
+        "role": "Koordinator Keluarga Pria",
+        "contact": "0812-1111-2222",
+        "photo": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/..."
+      },
+      {
+        "id": "2",
+        "name": "Siti Rahayu",
+        "role": "Koordinator Keluarga Wanita",
+        "contact": "0812-3333-4444",
+        "photo": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/..."
+      }
+    ],
+    "moodboard": [
+      {
+        "id": "1",
+        "category": "Dekorasi",
+        "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/...",
+        "description": "Dekorasi pelaminan dengan tema rustic"
+      },
+      {
+        "id": "2",
+        "category": "Bunga",
+        "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/...",
+        "description": "Rangkaian bunga dengan warna pastel"
+      }
+    ],
+    "eventSummary": {
+      "title": "Pernikahan Ary & Anta",
+      "subtitle": "Merajut Cinta Menuju Bahagia",
+      "description": "Dengan rahmat Allah SWT, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri pernikahan kami",
+      "hashtag": "#AryAntaWedding"
+    }
+  },
+  "images": {}
+}
