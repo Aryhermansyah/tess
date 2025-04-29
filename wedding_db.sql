@@ -1,0 +1,100 @@
+-- Membuat database untuk undangan pernikahan
+CREATE DATABASE IF NOT EXISTS wedding_invitation_db;
+USE wedding_invitation_db;
+
+-- Tabel untuk data inti pernikahan
+CREATE TABLE IF NOT EXISTS wedding_core (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  bride_name VARCHAR(255) NOT NULL,
+  groom_name VARCHAR(255) NOT NULL,
+  wedding_date DATE NOT NULL,
+  wedding_time TIME NOT NULL,
+  venue_name VARCHAR(255) NOT NULL,
+  venue_address TEXT NOT NULL,
+  venue_maps_link TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Tabel untuk jadwal acara
+CREATE TABLE IF NOT EXISTS wedding_schedule (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  date DATE NOT NULL,
+  start_time TIME NOT NULL,
+  end_time TIME,
+  description TEXT,
+  location VARCHAR(255),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Tabel untuk panitia
+CREATE TABLE IF NOT EXISTS wedding_committee (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  role VARCHAR(255) NOT NULL,
+  phone VARCHAR(20),
+  email VARCHAR(255),
+  image_path VARCHAR(255),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Tabel untuk vendor
+CREATE TABLE IF NOT EXISTS wedding_vendors (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  category VARCHAR(255) NOT NULL,
+  contact VARCHAR(255),
+  website VARCHAR(255),
+  image_path VARCHAR(255),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Tabel untuk koordinator
+CREATE TABLE IF NOT EXISTS wedding_coordinators (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  role VARCHAR(255) NOT NULL,
+  phone VARCHAR(20),
+  email VARCHAR(255),
+  image_path VARCHAR(255),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Tabel untuk moodboard
+CREATE TABLE IF NOT EXISTS wedding_moodboard (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  category VARCHAR(255) NOT NULL,
+  image_path VARCHAR(255) NOT NULL,
+  description TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Tabel untuk ringkasan acara
+CREATE TABLE IF NOT EXISTS wedding_event_summary (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  summary_text TEXT NOT NULL,
+  highlight_points TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Tabel untuk tamu
+CREATE TABLE IF NOT EXISTS wedding_guests (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255),
+  phone VARCHAR(20),
+  address TEXT,
+  invitation_code VARCHAR(20) UNIQUE,
+  is_attending BOOLEAN DEFAULT NULL,
+  number_of_guests INT DEFAULT 1,
+  special_notes TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+); 

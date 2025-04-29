@@ -4,6 +4,8 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const bodyParser = require('body-parser');
+const { testConnection } = require('./config/database');
+const weddingDb = require('./utils/db/wedding');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -38,6 +40,20 @@ const upload = multer({ storage: storage });
 
 // Serve static files from the assets directory
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
+
+// Test database connection
+app.get('/api/test-db', async (req, res) => {
+  try {
+    const connected = await testConnection();
+    if (connected) {
+      res.json({ success: true, message: 'Database connected successfully' });
+    } else {
+      res.status(500).json({ success: false, message: 'Database connection failed' });
+    }
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Database connection error', error: error.message });
+  }
+});
 
 // Handle image uploads
 app.post('/api/upload', upload.single('image'), (req, res) => {
@@ -95,7 +111,118 @@ app.post('/api/upload-base64', (req, res) => {
   }
 });
 
-// API endpoint to save wedding data
+// =========== MYSQL DATABASE API ENDPOINTS ==========
+
+// API endpoints untuk wedding core data
+app.get('/api/db/wedding-core', async (req, res) => {
+  try {
+    const data = await weddingDb.getWeddingCore();
+    res.json(data || {});
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.post('/api/db/wedding-core', async (req, res) => {
+  try {
+    const data = await weddingDb.saveWeddingCore(req.body);
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.put('/api/db/wedding-core/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const data = await weddingDb.updateWeddingCore(id, req.body);
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// API endpoints untuk jadwal acara
+app.get('/api/db/wedding-schedules', async (req, res) => {
+  try {
+    const data = await weddingDb.getWeddingSchedules();
+    res.json(data || []);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.post('/api/db/wedding-schedules', async (req, res) => {
+  try {
+    const data = await weddingDb.saveWeddingSchedule(req.body);
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.put('/api/db/wedding-schedules/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const data = await weddingDb.updateWeddingSchedule(id, req.body);
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.delete('/api/db/wedding-schedules/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    await weddingDb.deleteWeddingSchedule(id);
+    res.json({ success: true });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// API endpoints untuk panitia
+app.get('/api/db/wedding-committee', async (req, res) => {
+  try {
+    const data = await weddingDb.getWeddingCommittee();
+    res.json(data || []);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.post('/api/db/wedding-committee', async (req, res) => {
+  try {
+    const data = await weddingDb.saveWeddingCommitteeMember(req.body);
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.put('/api/db/wedding-committee/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const data = await weddingDb.updateWeddingCommitteeMember(id, req.body);
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.delete('/api/db/wedding-committee/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    await weddingDb.deleteWeddingCommitteeMember(id);
+    res.json({ success: true });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// =========== BACKWARD COMPATIBILITY - JSON FILE API ==========
+
+// API endpoint to save wedding data (keeping for backward compatibility)
 app.post('/api/save-data', (req, res) => {
   const { key, data } = req.body;
   
@@ -124,7 +251,7 @@ app.post('/api/save-data', (req, res) => {
   }
 });
 
-// API endpoint to get wedding data
+// API endpoint to get wedding data (keeping for backward compatibility)
 app.get('/api/get-data/:key', (req, res) => {
   const { key } = req.params;
   
@@ -154,7 +281,19 @@ app.use((req, res) => {
 });
 
 // Start the server
-app.listen(port, () => {
+app.listen(port, async () => {
   console.log(`Server running on port ${port}`);
   console.log(`Image uploads will be saved to ${path.join(__dirname, 'assets', 'wedding_app', 'images')}`);
+  
+  // Test database connection on startup
+  try {
+    const connected = await testConnection();
+    if (connected) {
+      console.log('Database connection: SUCCESS');
+    } else {
+      console.log('Database connection: FAILED');
+    }
+  } catch (error) {
+    console.error('Database connection error:', error);
+  }
 });

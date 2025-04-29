@@ -1,0 +1,38 @@
+LANGKAH-LANGKAH MEMBUAT DATABASE DI PHPMYADMIN:
+
+1. Pastikan XAMPP sudah berjalan
+   - Buka XAMPP Control Panel
+   - Mulai modul Apache dan MySQL
+   - Pastikan keduanya berwarna hijau (aktif)
+
+2. Buka phpMyAdmin:
+   - Buka browser web
+   - Kunjungi: http://localhost/phpmyadmin/
+
+3. Buat Database Baru:
+   - Di halaman utama phpMyAdmin, klik "New" (Baru) di panel kiri
+   - Masukkan nama database: wedding_invitation_db
+   - Pilih encoding: utf8mb4_general_ci
+   - Klik "Create" (Buat)
+
+4. Impor File SQL:
+   - Setelah database dibuat, pilih database wedding_invitation_db di panel kiri
+   - Klik tab "Import" (Impor) di atas
+   - Klik tombol "Choose File" (Pilih File)
+   - Pilih file wedding_db.sql dari direktori tess
+   - Pastikan format SQL dipilih
+   - Scroll ke bawah dan klik tombol "Go" (Jalankan)
+
+5. Cek Hasil:
+   - Setelah impor berhasil, klik database wedding_invitation_db di panel kiri
+   - Pastikan semua tabel telah dibuat dengan benar:
+     * wedding_core
+     * wedding_schedule
+     * wedding_committee
+     * wedding_vendors
+     * wedding_coordinators
+     * wedding_moodboard
+     * wedding_event_summary
+     * wedding_guests
+
+6. Selesai! Database Anda sudah siap digunakan. 
